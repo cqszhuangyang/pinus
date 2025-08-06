@@ -219,9 +219,9 @@ export function checkPort(app: Application, server: ServerInfo, cb: (result: str
             ssh_params = '';
         }
         if (!isLocal(host)) {
-            cmd = util.format('ssh %s %s "netstat -an|awk \'{print $4}\'|grep %s|wc -l"', host, ssh_params, port);
+            cmd = util.format('ssh %s %s "netstat -tlnp|awk \'{print $4}\'|grep %s|wc -l"', host, ssh_params, port);
         } else {
-            cmd = util.format('netstat -an|awk \'{print $4}\'|grep %s|wc -l', port);
+            cmd = util.format('netstat -tlnp|awk \'{print $4}\'|grep %s|wc -l', port);
         }
         return cmd;
     };
